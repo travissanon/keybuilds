@@ -7,10 +7,6 @@ const StyledTableCell = styled.td`
     text-align: left;
     font-weight: 400;
     color: #525252;
-
-    .cellFocus {
-        font-weight: 700;
-    }
 `;
 
 export interface ITableCellProps {
@@ -22,7 +18,7 @@ export default function TableCell (props: ITableCellProps) {
     const { classes, content } = props;
     return (
         <StyledTableCell className={classes.join(' ')}>
-            {content}
+            { content }
         </StyledTableCell>
     );
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import TableRow from '../TableRow/index.tsx';
 import TableHead from '../TableHead/index.tsx';
+import ChoosePartButton from "../ChoosePartButton/index.tsx";
 
 const StyledTable = styled.table`
   background-color: lightgray;
@@ -31,6 +32,12 @@ const mockKeyboardData = {
         selection: "DZ60 Soldered 60% Mechanical Keyboard PCB",
         store: "KBDFans",
         price: "$36.89"
+    },
+    switches: {
+        partName: "Switches",
+        selection: false,
+        store: null,
+        price: null
     }
 };
 
@@ -45,13 +52,29 @@ export default function Table(props: ITableProps) {
                 const compositeKey = `cell:${index}::${item[0]}`;
                 const data = item[1];
 
-                return (
-                    <TableRow
-                        key={compositeKey}
-                        data={data}
-                        cellFocus={'partName'}
-                    />
-                );
+                const partChosen = data.selection;
+
+                if (partChosen) {
+                    return (
+                        <TableRow
+                            key={compositeKey}
+                            data={data}
+                            cellFocus={'partName'}
+                            rowOptions={true}
+                        />
+                    )
+                } else {
+                    const newData = { ...data, selection: <ChoosePartButton /> }
+
+                    return (
+                        <TableRow
+                            key={compositeKey}
+                            data={newData}
+                            cellFocus={'partName'}
+                            rowOptions={false}
+                        />
+                    )
+                }
             })}
         </tbody>
     </StyledTable>

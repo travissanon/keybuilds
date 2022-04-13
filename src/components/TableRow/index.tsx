@@ -4,16 +4,21 @@ import TableCell from '../TableCell/index.tsx';
 import TableRowOptions from '../TableRowOptions/index.tsx';
 
 const StyledTableRow = styled.tr`
+    .cellFocus {
+        font-weight: 700;
+    }
 `;
 
 export interface ITableRowProps {
     data: object;
     cellFocus: string;
+    rowOptions: boolean;
 }
 
 export default function TableRow (props: ITableRowProps) {
-    const { data, cellFocus } = props;
+    const { data, cellFocus, rowOptions } = props;
     return (
+        
         <StyledTableRow>
             {Object.entries(data).map((item, index) => {
                 const cellFocusClassName = item[0] === cellFocus ? 'cellFocus' : '';
@@ -28,7 +33,7 @@ export default function TableRow (props: ITableRowProps) {
                     />
                 )
             })}
-            <TableRowOptions />
+            {rowOptions && (<TableRowOptions />)}
         </StyledTableRow>
     );
 }
