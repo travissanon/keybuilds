@@ -38,7 +38,7 @@ const mockKeyboardData = {
         selection: false,
         store: null,
         price: null
-    }
+    },
 };
 
 export interface ITableProps {}
@@ -52,6 +52,7 @@ export default function Table(props: ITableProps) {
                 const compositeKey = `cell:${index}::${item[0]}`;
                 const data = item[1];
 
+                // TODO: Refactor this code to make this Table component more generic.
                 const partChosen = data.selection;
 
                 if (partChosen) {
