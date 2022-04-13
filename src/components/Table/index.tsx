@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Edit, Close } from '@carbon/icons-react';
+import TableRow from '../TableRow/index.tsx';
 
 const StyledTable = styled.table`
   background-color: lightgray;
@@ -18,29 +18,6 @@ const StyledTable = styled.table`
     color: #161616;
     text-align: left;
   }
-
-  td {
-    background-color: #F4F4F4;
-    padding: 16px 16px 30px;
-    text-align: left;
-    font-weight: 400;
-    color: #525252;
-
-    svg {
-        padding-left: 20px;
-    }
-
-    button {
-        background-color: #0F62FE;
-        border: none;
-        padding: 7px 16px;
-        color: #fff;
-    }
-  }
-
-  .part {
-    font-weight: 700;
-  }
 `;
 
 export interface ITableProps {}
@@ -55,28 +32,24 @@ export default function Table(props: ITableProps) {
             <th>Price</th>
             <th></th>
         </tr>
-        <tr>
-            <td className="part">Case</td>
-            <td>Tofu84 Mechanical Keyboard Case</td>
-            <td>KBDFans</td>
-            <td>$34.99</td>
-            <td>
-                <button>Buy</button>
-                <Edit />
-                <Close />
-            </td>
-        </tr>
-        <tr>
-            <td className="part">Circuit Board (PCB)</td>
-            <td>DZ60 Soldered 60% Mechanical Keyboard PCB</td>
-            <td>KBDFans</td>
-            <td>$36.89</td>
-            <td>
-                <button>Buy</button>
-                <Edit />
-                <Close />
-            </td>
-        </tr>
+        <TableRow 
+            data={{
+                part: "Case",
+                selection: "Tofu84 Mechanical Keyboard Case",
+                store: "KBDFans",
+                price: "$34.99"
+            }}
+            cellFocus={'part'}
+        />
+        <TableRow 
+            data={{
+                part: "Circuit Board (PCB)",
+                selection: "DZ60 Soldered 60% Mechanical Keyboard PCB",
+                store: "KBDFans",
+                price: "$36.89"
+            }}
+            cellFocus={'part'}
+        />
     </StyledTable>
   );
 }
