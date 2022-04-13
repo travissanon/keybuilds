@@ -1,29 +1,20 @@
 import * as React from 'react';
 import { Edit, Close } from '@carbon/icons-react';
 import styled from 'styled-components';
+import TableCell from '../TableCell/index.tsx';
 
 const StyledTableRow = styled.tr`
-    td {
-        background-color: #F4F4F4;
-        padding: 16px 16px 30px;
-        text-align: left;
-        font-weight: 400;
-        color: #525252;
+    tr {}
 
-        svg {
-            padding-left: 20px;
-        }
-
-        button {
-            background-color: #0F62FE;
-            border: none;
-            padding: 7px 16px;
-            color: #fff;
-        }
+    svg {
+        padding-left: 20px;
     }
 
-    .cellFocus {
-        font-weight: 700;
+    button {
+        background-color: #0F62FE;
+        border: none;
+        padding: 7px 16px;
+        color: #fff;
     }
 `;
 
@@ -39,12 +30,14 @@ export default function TableRow (props: ITableRowProps) {
             {Object.entries(data).map((item, index) => {
                 const cellFocusClassName = item[0] === cellFocus ? 'cellFocus' : '';
                 const text = item[1];
-                const key = `cell:${index}::${text}`
+                const compositeKey = `cell:${index}::${text}`
 
                 return (
-                    <td key={key} className={`${cellFocusClassName}`}>
-                        {text}
-                    </td>
+                    <TableCell
+                        key={compositeKey}
+                        classes={[cellFocusClassName]}
+                        content={text}
+                    />
                 )
             })}
             <td>
