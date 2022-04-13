@@ -1,12 +1,12 @@
 import * as React from "react";
 import TableTitle from "../TableTitle/index.tsx";
-import TableToolbar from "./TableToolbar.tsx";
-import Table from "./Table.tsx";
+import TableToolbar from "../TableToolbar/index.tsx";
+import Table from "../Table/index.tsx";
 import TableBottomBar from "./TableBottomBar.tsx";
 import styled from "styled-components";
 
 const StyledRoot = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
 `;
 
 export interface IKeyboardBuilderProps {}

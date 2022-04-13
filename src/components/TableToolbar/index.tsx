@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import LinkGenerator from "./LinkGenerator.tsx";
+import LinkGenerator from "../LinkGenerator/index.tsx";
+import Tooling from "../Tooling/index.tsx";
 
 enum Colors {
   Black = "#161616",
@@ -13,6 +14,9 @@ const StyledTableToolbar = styled.div`
   font-family: "IBM Plex Sans", sans-serif;
   padding: 14px;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export interface ITableToolbarProps {}
@@ -21,7 +25,7 @@ export default function TableToolbar(props: ITableToolbarProps) {
   return (
     <StyledTableToolbar>
       <LinkGenerator />
-      <span>Utilities</span>
+      <Tooling />
     </StyledTableToolbar>
   );
 }
