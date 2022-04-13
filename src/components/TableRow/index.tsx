@@ -1,21 +1,9 @@
 import * as React from 'react';
-import { Edit, Close } from '@carbon/icons-react';
 import styled from 'styled-components';
 import TableCell from '../TableCell/index.tsx';
+import TableRowOptions from '../TableRowOptions/index.tsx';
 
 const StyledTableRow = styled.tr`
-    tr {}
-
-    svg {
-        padding-left: 20px;
-    }
-
-    button {
-        background-color: #0F62FE;
-        border: none;
-        padding: 7px 16px;
-        color: #fff;
-    }
 `;
 
 export interface ITableRowProps {
@@ -40,11 +28,7 @@ export default function TableRow (props: ITableRowProps) {
                     />
                 )
             })}
-            <td>
-                <button>Buy</button>
-                <Edit />
-                <Close />
-            </td>
+            <TableRowOptions />
         </StyledTableRow>
     );
 }
