@@ -1,5 +1,5 @@
 import * as React from "react";
-import TableTitle from "./TableTitle.tsx";
+import TableTitle from "../TableTitle/index.tsx";
 import TableToolbar from "./TableToolbar.tsx";
 import Table from "./Table.tsx";
 import TableBottomBar from "./TableBottomBar.tsx";
