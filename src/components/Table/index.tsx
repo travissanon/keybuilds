@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import TableRow from '../TableRow/index.tsx';
+import TableHead from '../TableHead/index.tsx';
 
 const StyledTable = styled.table`
   background-color: lightgray;
@@ -39,13 +40,7 @@ export default function Table(props: ITableProps) {
   return (
     <StyledTable cellspacing="0" cellpadding="0">
         <tbody>
-            <tr>
-                <th>Part</th>
-                <th>Selection</th>
-                <th>Store</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
+            <TableHead />
             {Object.entries(mockKeyboardData).map((item, index) => {
                 const compositeKey = `cell:${index}::${item[0]}`;
                 const data = item[1];
