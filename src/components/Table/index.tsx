@@ -2,7 +2,6 @@ import * as React from "react";
 import styled from "styled-components";
 import TableRow from '../TableRow/index.tsx';
 import TableHead from '../TableHead/index.tsx';
-import ChoosePartButton from "../ChoosePartButton/index.tsx";
 
 const StyledTable = styled.table`
   background-color: lightgray;
