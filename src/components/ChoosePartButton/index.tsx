@@ -18,9 +18,11 @@ const StyledChoosePartButton = styled.button`
 
 export default function ChoosePartButton () {
     return (
-        <StyledChoosePartButton>
-            Choose a part
-            <Add size={16} />
-        </StyledChoosePartButton>
+        <Link to="/pick-part">
+            <StyledChoosePartButton>
+                Choose a part
+                <Add size={16} />
+            </StyledChoosePartButton>
+        </Link>
     )
 }
