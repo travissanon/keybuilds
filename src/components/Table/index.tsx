@@ -22,10 +22,11 @@ const StyledTable = styled.table`
 
 export interface ITableProps {
     data: any;
+    renderLogic: any;
 }
 
 export default function Table(props: ITableProps) {
-    const { data } = props;
+    const { data, renderLogic } = props;
 
     return (
         <StyledTable cellspacing="0" cellpadding="0">
@@ -35,30 +36,28 @@ export default function Table(props: ITableProps) {
                     const compositeKey = `cell:${index}::${item[0]}`;
                     const val: any = item[1];
 
-                    // TODO: Refactor this code to make this Table component more generic.
-                    const partChosen = val.selection;
+                    if (renderLogic) {
+                        const config = renderLogic(val);
 
-                    if (partChosen) {
+                        return (
+                            <TableRow
+                                key={compositeKey}
+                                data={config.value}
+                                cellFocus={'partName'}
+                                rowOptions={config.rowOptions}
+                            />
+                        )
+                    } else {
                         return (
                             <TableRow
                                 key={compositeKey}
                                 data={val}
                                 cellFocus={'partName'}
-                                rowOptions={true}
-                            />
-                        )
-                    } else {
-                        const newData = { ...val, selection: <ChoosePartButton /> }
-
-                        return (
-                            <TableRow
-                                key={compositeKey}
-                                data={newData}
-                                cellFocus={'partName'}
                                 rowOptions={false}
                             />
                         )
                     }
+
                 })}
             </tbody>
         </StyledTable>

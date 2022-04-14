@@ -3,6 +3,7 @@ import TableTitle from "../TableTitle/index.tsx";
 import TableToolbar from "../TableToolbar/index.tsx";
 import Table from "../Table/index.tsx";
 import TableBottomBar from "./TableBottomBar.tsx";
+import ChoosePartButton from "../ChoosePartButton/index.tsx";
 import styled from "styled-components";
 
 const StyledRoot = styled.div`
@@ -32,6 +33,24 @@ const mockKeyboardData = {
   },
 };
 
+const setupTableRowProps = (value) => {
+  const partChosen = value.selection;
+
+  if (partChosen) {
+    return { 
+      value: value,
+      rowOptions: true
+    }
+  } else {
+    const newData = { ...value, selection: <ChoosePartButton /> }
+
+    return {
+      value: newData,
+      rowOptions: false
+    }
+  }
+}
+
 export default function KeyboardBuilder(props: IKeyboardBuilderProps) {
   return (
     <StyledRoot>
@@ -40,9 +59,9 @@ export default function KeyboardBuilder(props: IKeyboardBuilderProps) {
           title={"Keyboard Builder"}
           subtitle={"Build your ideal mechanical keyboard."}
         />
-        {/* <TableToolbar />
-        <Table data={mockKeyboardData} />
-        <TableBottomBar /> */}
+        <TableToolbar />
+        <Table data={mockKeyboardData} renderLogic={setupTableRowProps} />
+        <TableBottomBar />
       </div>
     </StyledRoot>
   );

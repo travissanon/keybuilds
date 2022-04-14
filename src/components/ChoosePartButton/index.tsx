@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Add } from '@carbon/icons-react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledChoosePartButton = styled.button`
     background-color: #0F62FE;
