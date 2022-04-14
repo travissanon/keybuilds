@@ -11,6 +11,27 @@ const StyledRoot = styled.div`
 
 export interface IKeyboardBuilderProps {}
 
+const mockKeyboardData = {
+  case: {
+      partName: "Case",
+      selection: "Tofu84 Mechanical Keyboard Case",
+      store: "KBDFans",
+      price: "$34.99"
+  },
+  circuitBoard: {
+      partName: "Circuit Board (PCB)",
+      selection: "DZ60 Soldered 60% Mechanical Keyboard PCB",
+      store: "KBDFans",
+      price: "$36.89"
+  },
+  switches: {
+      partName: "Switches",
+      selection: false,
+      store: null,
+      price: null
+  },
+};
+
 export default function KeyboardBuilder(props: IKeyboardBuilderProps) {
   return (
     <StyledRoot>
@@ -19,9 +40,9 @@ export default function KeyboardBuilder(props: IKeyboardBuilderProps) {
           title={"Keyboard Builder"}
           subtitle={"Build your ideal mechanical keyboard."}
         />
-        <TableToolbar />
-        <Table />
-        <TableBottomBar />
+        {/* <TableToolbar />
+        <Table data={mockKeyboardData} />
+        <TableBottomBar /> */}
       </div>
     </StyledRoot>
   );

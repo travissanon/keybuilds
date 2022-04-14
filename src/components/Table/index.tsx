@@ -20,64 +20,47 @@ const StyledTable = styled.table`
   }
 `;
 
-const mockKeyboardData = {
-    case: {
-        partName: "Case",
-        selection: "Tofu84 Mechanical Keyboard Case",
-        store: "KBDFans",
-        price: "$34.99"
-    },
-    circuitBoard: {
-        partName: "Circuit Board (PCB)",
-        selection: "DZ60 Soldered 60% Mechanical Keyboard PCB",
-        store: "KBDFans",
-        price: "$36.89"
-    },
-    switches: {
-        partName: "Switches",
-        selection: false,
-        store: null,
-        price: null
-    },
-};
-
-export interface ITableProps {}
+export interface ITableProps {
+    data: any;
+}
 
 export default function Table(props: ITableProps) {
-  return (
-    <StyledTable cellspacing="0" cellpadding="0">
-        <tbody>
-            <TableHead />
-            {Object.entries(mockKeyboardData).map((item, index) => {
-                const compositeKey = `cell:${index}::${item[0]}`;
-                const data = item[1];
+    const { data } = props;
 
-                // TODO: Refactor this code to make this Table component more generic.
-                const partChosen = data.selection;
+    return (
+        <StyledTable cellspacing="0" cellpadding="0">
+            <tbody>
+                <TableHead />
+                {Object.entries(data).map((item, index) => {
+                    const compositeKey = `cell:${index}::${item[0]}`;
+                    const val: any = item[1];
 
-                if (partChosen) {
-                    return (
-                        <TableRow
-                            key={compositeKey}
-                            data={data}
-                            cellFocus={'partName'}
-                            rowOptions={true}
-                        />
-                    )
-                } else {
-                    const newData = { ...data, selection: <ChoosePartButton /> }
+                    // TODO: Refactor this code to make this Table component more generic.
+                    const partChosen = val.selection;
 
-                    return (
-                        <TableRow
-                            key={compositeKey}
-                            data={newData}
-                            cellFocus={'partName'}
-                            rowOptions={false}
-                        />
-                    )
-                }
-            })}
-        </tbody>
-    </StyledTable>
-  );
+                    if (partChosen) {
+                        return (
+                            <TableRow
+                                key={compositeKey}
+                                data={val}
+                                cellFocus={'partName'}
+                                rowOptions={true}
+                            />
+                        )
+                    } else {
+                        const newData = { ...val, selection: <ChoosePartButton /> }
+
+                        return (
+                            <TableRow
+                                key={compositeKey}
+                                data={newData}
+                                cellFocus={'partName'}
+                                rowOptions={false}
+                            />
+                        )
+                    }
+                })}
+            </tbody>
+        </StyledTable>
+    );
 }
