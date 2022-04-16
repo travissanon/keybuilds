@@ -12,11 +12,12 @@ const StyledTableRow = styled.tr`
 export interface ITableRowProps {
     data: object;
     cellFocus: string;
-    rowOptions: boolean;
+    rowOptions?: boolean;
+    addButton?: boolean;
 }
 
 export default function TableRow (props: ITableRowProps) {
-    const { data, cellFocus, rowOptions } = props;
+    const { data, cellFocus, rowOptions, addButton } = props;
     return (
         
         <StyledTableRow>
@@ -34,6 +35,7 @@ export default function TableRow (props: ITableRowProps) {
                 )
             })}
             {rowOptions && (<TableRowOptions />)}
+            {addButton && (<button>Add</button>)}
         </StyledTableRow>
     );
 }

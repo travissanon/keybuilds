@@ -5,16 +5,18 @@ const StyledTableHead = styled.tr`
 `;
 
 export interface ITableHeadProps {
+  headers: string[];
 }
 
 export default function TableHead (props: ITableHeadProps) {
+  const { headers } = props;
+
   return (
     <StyledTableHead>
-        <th>Part</th>
-        <th>Selection</th>
-        <th>Store</th>
-        <th>Price</th>
-        <th></th>
+      {headers.map((header, index) => {
+        return <th key={index}>{header}</th>
+      })}
+      <th></th>
     </StyledTableHead>
   );
 }

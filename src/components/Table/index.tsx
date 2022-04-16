@@ -22,21 +22,23 @@ const StyledTable = styled.table`
 export interface ITableProps {
     data: any;
     renderLogic: any;
+    headers: string[];
+    rowOptions?: boolean;
+    addButton?: boolean;
 }
 
 export default function Table(props: ITableProps) {
-    const { data, renderLogic } = props;
+    const { data, headers, rowOptions, renderLogic, addButton } = props;
 
     return (
         <StyledTable cellspacing="0" cellpadding="0">
             <tbody>
-                <TableHead />
-                {Object.entries(data).map((item, index) => {
-                    const compositeKey = `cell:${index}::${item[0]}`;
-                    const val: any = item[1];
+                <TableHead headers={headers} />
+                {data.map((value, index) => {
+                    const compositeKey = `cell:${index}::${value}`;
 
                     if (renderLogic) {
-                        const config = renderLogic(val);
+                        const config = renderLogic(value);
 
                         return (
                             <TableRow
@@ -50,9 +52,10 @@ export default function Table(props: ITableProps) {
                         return (
                             <TableRow
                                 key={compositeKey}
-                                data={val}
+                                data={value}
                                 cellFocus={'partName'}
-                                rowOptions={false}
+                                rowOptions={rowOptions}
+                                addButton={addButton}
                             />
                         )
                     }
